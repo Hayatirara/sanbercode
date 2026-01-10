@@ -1,0 +1,83 @@
+describe('OrangeHRM - Login Feature', () => {
+
+  beforeEach(() => {
+    cy.visit('https://opensource-demo.orangehrmlive.com/');
+  });
+
+  it('TC-LOGIN-001 - Verify login page can be accessed', () => {
+    cy.get('input[name="username"]').should('be.visible');
+    cy.get('input[name="password"]').should('be.visible');
+    cy.get('button[type="submit"]').should('be.visible');
+  });
+
+  it('TC-LOGIN-002 - Verify username field can be filled', () => {
+    cy.get('input[name="username"]').type('Admin');
+  });
+
+  it('TC-LOGIN-003 - Verify password field can be filled', () => {
+    cy.get('input[name="password"]').type('admin123');
+  });
+
+  it('TC-LOGIN-006 - Verify password is hidden', () => {
+    cy.get('input[name="password"]').should('have.attr', 'type', 'password');
+  });
+
+  it('TC-LOGIN-004 - Verify login with valid credentials', () => {
+    cy.get('input[name="username"]').type('Admin');
+    cy.get('input[name="password"]').type('admin123');
+    cy.get('button[type="submit"]').click();
+  });
+
+  it('TC-LOGIN-005 - Verify user redirected to dashboard after login', () => {
+    cy.get('input[name="username"]').type('Admin');
+    cy.get('input[name="password"]').type('admin123');
+    cy.get('button[type="submit"]').click();
+    cy.url().should('include', '/dashboard');
+  });
+
+  it('TC-LOGIN-007 - Login fails when username is empty', () => {
+    cy.get('input[name="password"]').type('admin123');
+    cy.get('button[type="submit"]').click();
+    cy.contains('Required').should('be.visible');
+  });
+
+  it('TC-LOGIN-008 - Login fails when password is empty', () => {
+    cy.get('input[name="username"]').type('Admin');
+    cy.get('button[type="submit"]').click();
+    cy.contains('Required').should('be.visible');
+  });
+
+  it('TC-LOGIN-009 - Login fails when username and password are empty', () => {
+    cy.get('button[type="submit"]').click();
+    cy.contains('Required').should('be.visible');
+  });
+
+  it('TC-LOGIN-010 - Login fails with invalid password', () => {
+    cy.get('input[name="username"]').type('Admin');
+    cy.get('input[name="password"]').type('admin123456');
+    cy.get('button[type="submit"]').click();
+    cy.contains('Invalid credentials').should('be.visible');
+  });
+
+  it('TC-LOGIN-022 - Forgot password link is visible', () => {
+    cy.contains('Forgot your password?').should('be.visible');
+  });
+
+  it('TC-LOGIN-023 - Forgot password page can be opened', () => {
+    cy.contains('Forgot your password?').click();
+    cy.url().should('include', 'requestPasswordResetCode');
+  });
+
+  it('TC-LOGIN-028 - Reset password fails without username', () => {
+    cy.contains('Forgot your password?').click();
+    cy.get('button[type="submit"]').click();
+    cy.contains('Required').should('be.visible');
+  });
+
+  it('TC-LOGIN-026 - Cancel reset password navigates back to login', () => {
+    cy.contains('Forgot your password?').click();
+    cy.contains('Cancel').click();
+    cy.url().should('include', '/auth/login');
+  });
+
+});
