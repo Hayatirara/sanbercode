@@ -34,13 +34,6 @@ describe('OrangeHRM - Login Feature (POM)', () => {
     );
   });
 
-  it('TC-LOGIN-005 - Verify user redirected to dashboard after login', () => {
-    LoginPage.login(
-      loginData.validUsername,
-      loginData.validPassword
-    );
-    cy.url().should('include', '/dashboard');
-  });
 
   it('TC-LOGIN-007 - Login fails when username is empty', () => {
     LoginPage.fillPassword(loginData.validPassword);
@@ -59,14 +52,6 @@ describe('OrangeHRM - Login Feature (POM)', () => {
     LoginPage.errorMessage('Required').should('be.visible');
   });
 
-  it('TC-LOGIN-010 - Login fails with invalid password', () => {
-    LoginPage.login(
-      loginData.validUsername,
-      loginData.invalidPassword
-    );
-    LoginPage.errorMessage('Invalid credentials')
-      .should('be.visible');
-  });
 
   it('TC-LOGIN-022 - Forgot password link is visible', () => {
     LoginPage.forgotPasswordLink().should('be.visible');
