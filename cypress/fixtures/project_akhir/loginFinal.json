@@ -1,0 +1,15 @@
+{
+  "valid": {
+    "username": "Admin",
+    "password": "admin123"
+  },
+  "invalid": {
+    "username": "Adisa",
+    "password": "admin123456"
+  },
+  "special": {
+    "usernameWithSpace": "Ad min",
+    "onlySpecial": "!@#$%^",
+    "specialPassword": "!@#$%"
+  }
+}

@@ -1,7 +1,15 @@
 {
-  "validUsername":"Admin",
-  "validPassword":"admin123",
-  "invalidUsername": "Adminn" ,
-  "invalidPassword": "admin123456"   
+  "validUser": "Admin",
+  "validPassword": "admin123",
+  "invalidUser": "Adisa",
+  "invalidPassword": "admin123456",
+  "empty": "",
+  "usernameLeadingSpace": " Admin",
+  "usernameMidSpace": "Ad min",
+  "usernameTrailingSpace": "Admin ",
+  "passwordLeadingSpace": " admin123",
+  "passwordMidSpace": "adm in123",
+  "passwordTrailingSpace": "admin123 ",
+  "specialCharUsername": "!@#$%^",
+  "specialCharPassword": "!@#$%"
 }
- 

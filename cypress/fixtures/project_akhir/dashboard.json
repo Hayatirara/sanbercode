@@ -1,0 +1,12 @@
+{
+  "login": {
+    "username": "Admin",
+    "password": "admin123"
+  },
+  "widgets": {
+    "timeAtWork": "Time at Work",
+    "myActions": "My Actions",
+    "quickLaunch": "Quick Launch",
+    "buzz": "Buzz Latest Posts"
+  }
+}
